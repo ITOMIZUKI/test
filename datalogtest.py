@@ -7,7 +7,7 @@ import datetime
 
 class CanSat:
     def __init__(self):
-        self.data_log_file_name = "C:\Python\datatest1.csv"
+        self.data_log_file_name = "datatest1.csv"
 
         with open(self.data_log_file_name, "w", encoding = "utf-8", newline = '') as f:
             w = csv.writer(f, delimiter = ",")
@@ -17,8 +17,7 @@ class CanSat:
             w.writerow(buf)
 
     def update_atitude(self):
-        self.nowtime = datetime.datetime.now().strftime("%H%M%S")
-        #= sensers.gps.timestamp[1] + sensers.gps.timestamp[2]
+        self.nowtime = (sensers.gps.timestamp[0], sensers.gps.timestamp[1], sensers.gps.timestamp[2])
         self.print_status()
         self.data_log()
         #print (self.nowtime)
@@ -39,4 +38,7 @@ cansat = CanSat()
 while True:
     cansat.update_atitude()
     time.sleep(1)
-    
+
+
+
+
